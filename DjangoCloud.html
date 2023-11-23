@@ -10,12 +10,11 @@
             html.className = html.className.replace(/\bno-js\b/, 'js')
         })(document.documentElement);
     </script>
-    <link rel='stylesheet' href='style.css' />
     <link rel="icon" href="logo2.jpg">
     <title>Masoud Akhgar</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta name='robots' content='max-image-preview:large' />
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='dns-prefetch' href='//s.w.org' />
     <link rel="alternate" type="application/rss+xml" title="masoudakhgar &raquo; Feed" href="wordpress/feed/" />
     <link rel="alternate" type="application/rss+xml" title="masoudakhgar &raquo; Comments Feed" href="wordpress/comments/feed/" />
@@ -84,6 +83,10 @@
     <style id='wp-block-library-theme-inline-css' type='text/css'>
         #start-resizable-editor-section {
             display: none
+        }
+        
+        .text-white-melo {
+            color: rgba(245, 245, 245, 0.945);
         }
         
         .wp-block-audio figcaption {
@@ -171,19 +174,6 @@
             padding-right: 1em
         }
         
-        p {
-            color: black !important;
-        }
-        
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: black !important;
-        }
-        
         .wp-block-quote.has-text-align-center {
             border: none;
             padding-left: 0
@@ -269,11 +259,22 @@
         #end-resizable-editor-section {
             display: none
         }
+        
+        p {
+            color: black !important;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: black !important;
+        }
     </style>
     <link rel='stylesheet' id='scapeshot-fonts-css' href='//fonts.googleapis.com/css?family=Poppins::200,300,400,500,600,700,400italic,700italic' type='text/css' media='all' />
-    <!-- <link rel='stylesheet' id='scapeshot-style-css' href='wordpress/wp-content/themes/scapeshot/style.css?ver=20210819-171303' type='text/css' media='all' /> -->
     <link rel='stylesheet' id='scapeshot-style-css' href='style.css' type='text/css' media='all' />
-
     <link rel='stylesheet' id='scapeshot-block-style-css' href='wordpress/wp-content/themes/scapeshot/assets/css/blocks.css?ver=1.0' type='text/css' media='all' />
     <!--[if lt IE 9]>
 <script type='text/javascript' src='wordpress/wp-content/themes/scapeshot/assets/js/html5.min.js?ver=3.7.3' id='scapeshot-html5-js'></script>
@@ -292,23 +293,18 @@
         }
     </style>
     <style type="text/css">
-        .site-title a,
-        .site-description,
-        .absolute-header.menu-open.navigation-full-screen .site-title a,
-        .absolute-header.menu-open.navigation-full-screen .site-description,
-        .absolute-header.menu-open.navigation-full-screen .search-toggle {
-            color: #ffffff;
-        }
-        
         .open span {
             color: white !important;
+        }
+        
+        #fullscreen-menu-toggle {
+            color: black;
         }
     </style>
 </head>
 
 <body style="background-color: white;" class="error404 wp-embed-responsive hfeed fluid-layout navigation-full-screen two-columns-layout content-left excerpt color-scheme-default has-header-media absolute-header has-header-image has-header-text">
 
-    
 
     <div id="page" class="site">
         <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
@@ -389,82 +385,49 @@
         <!-- #masthead -->
 
 
-        <br><br>
-        <div id="content" class="site-content container">
+        <br>
+        <div id="content" class="site-content">
             <div class="wrapper">
-                <h6 class="text-center">Please Choose any desired research for a full explanation</h6>
+
+
                 <div id="primary" class="container">
                     <main id="main" class="site-main">
                         <section class="error-404 not-found">
-                            
-                            <div class="page-content ">
-                                <div class="d-flex">
-                                    <div class="col-5">
-                                        <a href="plastics.html">
-                                            <br>
-                                            <h3>Data science Internship</h3>
-                                            <h5>Final cost estimation of plastic parts including tool cost effect with depreciation, using just visible parts features</h5>
-                                            <p>Full description of challenges in submitted paper.</p>
-                                        </a>
-                                    </div>
-                                    <img src="schneider_logo_project.jpg" class="col-5 offset-2" alt="68fd3a24.png" style="max-height: 365px;;">
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="page-content ">
-                                <div class="d-flex">
-                                    <div class="col-5">
-                                        <a href="HOG.html">
-                                            <br>
-                                            <h3>Robust HOG</h3>
-                                            <h5>Using correntropy loss function for optimizing Histogram Of Oriented Gradients</h5>
-                                            <p>Full description of challenges in submitted paper.</p>
-                                        </a>
-                                    </div>
-                                    <img src="schematic_final.jpg" class="col-5 offset-2" alt="68fd3a24.png" style="max-height: 365px;;">
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="page-content ">
-                                <div class="d-flex">
-                                    <div class="col-5">
-                                        <a href="EMG.html">
-                                            <br>
-                                            <h3>EMG Signal Processor Application</h3>
-                                            <h5>Application provided to analyze signals</h5>
-                                            <p>Coporating in the project which is intenting right now</p>
-                                        </a>
-                                    </div>
-                                    <img src="splash_fum.jpg" class="col-5 offset-2" alt="68fd3a24.png" style="max-height: 365px;;">
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="page-content ">
-                                <div class="d-flex">
-                                    <div class="col-5">
-                                        <a href="insole.html">
-                                            <br>
-                                            <h3>Intent Learning</h3>
-                                            <h5>Using Insole Equipped Eight Sensors</h5>
-                                            <p>From Analysis to deep learning</p>
-                                        </a>
-                                    </div>
-                                    <img src="insole.jpg" class="col-5 offset-2" alt="68fd3a24.png" style="max-height: 365px;;">
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="page-content ">
-                                <div class="d-flex">
-                                    <div class="col-5">
-                                        <a href="DjangoCloud.html">
-                                            <br>
-                                            <h3>Django-Cloud Project</h3>
-                                            <h5>Django - API - Sqlite - MVP model</h5>
-                                            <p>Comparison between two game Sqlite dataset</p>
-                                        </a>
-                                    </div>
-                                    <img src="cloudproject.JPG" class="col-5 offset-2" alt="68fd3a24.png" style="max-height: 365px;;">
-                                </div>
+                            <div class="page-content">
+                                <p class="text-white-melo">The aim of this project was to handle some queries using a <b>local sqlite database</b> 
+                                    after connecting to the server by a token provided and using an API. The sort of queries are related to comparison among game dataset, 
+                                    so to compare them, we utilize a csv file to import into our sqlite database. The background language is Django.</a>
+                                </p>
+                                <img src="cloudproject.JPG" alt="">
+
+                                <br>
+                                <p>In above picture, we are gonna respond to the queries by <b>sqlite statements</b>, retrieving from 
+                                    the database and send the respond in a <b>Json format </b> using API to the user.
+                                </p>
+                                <br>
+                                <p>in the project, we dont kill time on implementing a UI for the user, however, to check the result and <b>validating</b> them,
+                                we use Postman software which is an API platform for developers. 
+                                </p>
+                                
+<br>    
+<p>the next step is signing up...so we send a post request using postman to our django project, and here what we got:</p>
+<img src="gettoken2.JPG">using MVC model
+<br>
+                                <p>here is gettoken function to associate a token for each user in the admin folder of our project.</p>
+                                <img src="gettoken.JPG">
+                                <img src="gettoken3.JPG">
+                                <br>
+                                <p>AS we have games in our csv dataset, we need to request by sqlite statement and retrieve related records
+                                    to answer a query like: <br>
+                                    Five BestGame For One Platform In Particular Year???
+                                </p>
+                                <p>using token put into header, we request using postman</p>
+                                <img src="gettoken4.JPG">
+                                <p>and here is the background what I did using MVC or sometimes Sqlite commands!</p>
+                                <img src="gettoken5.JPG">
+
+                                <p>hope of finishing this project soon...!</p>
+                                <p>Thank you sincerely for being with me</p>
                             </div>
                             <!-- .page-content -->
                         </section>
