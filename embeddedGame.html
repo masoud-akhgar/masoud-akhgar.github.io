@@ -410,8 +410,8 @@
                               <img src="game4.png" alt="">
                               <img src="game5.JPG" alt="" >
 				    <img src="game6.jpg" alt="" >
-		<p>"#include "stm32f3xx_hal.h"
-
+		<p>"#include stm32f3xx_hal.h
+		"</p><br><p>"
 void initForSevenSeg(){
 	__HAL_RCC_GPIOC_CLK_ENABLE();
 	GPIO_InitTypeDef temp;
@@ -420,7 +420,7 @@ void initForSevenSeg(){
 	temp.Speed = GPIO_SPEED_FREQ_HIGH;
 	HAL_GPIO_Init(GPIOC,&temp);
 }
-
+"</p><br><p>"
 void initForEnableSevenSeg(){
 	__HAL_RCC_GPIOD_CLK_ENABLE();
 	GPIO_InitTypeDef temp;
@@ -429,14 +429,14 @@ void initForEnableSevenSeg(){
 	temp.Speed = GPIO_SPEED_FREQ_HIGH;
 	HAL_GPIO_Init(GPIOD,&temp);
 }
-
+"</p><br><p>"
 void initForLEDs(){
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	GPIO_InitTypeDef temp;
 	temp.Pin = GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8| GPIO_PIN_9;
 	temp.Mode = GPIO_MODE_OUTPUT_PP;
 	HAL_GPIO_Init(GPIOA,&temp);
-}
+}"</p><br><p>"
 void initForBlueButton(){
 		/*
 			initialization for enabling PORTA for BLUE-BUTTON
@@ -449,9 +449,9 @@ void initForBlueButton(){
 	temp1.Pull = GPIO_PULLDOWN;
 	HAL_GPIO_Init(GPIOA,&temp1);
 }
-
+"</p><br><p>"
 uint32_t LEDs[9]={GPIO_PIN_0,GPIO_PIN_1,GPIO_PIN_2,GPIO_PIN_3,GPIO_PIN_4,GPIO_PIN_5,GPIO_PIN_6,GPIO_PIN_7};
-
+"</p><br><p>"
 void showDigit(n){
 	switch(n){
 		case 0 :
@@ -525,7 +525,7 @@ void showDigit(n){
 			break;
 		}
 }
-
+"</p><br><p>"
 int main(void)
 {
   HAL_SYSTICK_Config(SystemCoreClock/(1000U/1));
@@ -564,7 +564,7 @@ int main(void)
 
   }
 }
-
+"</p><br><p>"
 
 void turnOnLEDs(int n){
 	for(int i = 0 ; i< n ; i++){
@@ -577,7 +577,7 @@ void resetLEDs(){
 		HAL_GPIO_WritePin(GPIOC ,LEDs[i],1);
 	}
 }
-
+"</p><br><p>"
 void show7Seg(int n) {
 	resetLEDs();
 
@@ -612,7 +612,7 @@ void show7Seg(int n) {
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, 1);
 
 }
-
+"</p><br><p>"
 
 void turnOffAll7SegLEDs(){
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,1);
