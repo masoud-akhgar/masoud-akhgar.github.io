@@ -410,7 +410,223 @@
                               <img src="game4.png" alt="">
                               <img src="game5.JPG" alt="" >
 				    <img src="game6.jpg" alt="" >
+		<p>"#include "stm32f3xx_hal.h"
 
+void initForSevenSeg(){
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	GPIO_InitTypeDef temp;
+	temp.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6;
+	temp.Mode = GPIO_MODE_OUTPUT_PP;
+	temp.Speed = GPIO_SPEED_FREQ_HIGH;
+	HAL_GPIO_Init(GPIOC,&temp);
+}
+
+void initForEnableSevenSeg(){
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+	GPIO_InitTypeDef temp;
+	temp.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3;
+	temp.Mode = GPIO_MODE_OUTPUT_PP;
+	temp.Speed = GPIO_SPEED_FREQ_HIGH;
+	HAL_GPIO_Init(GPIOD,&temp);
+}
+
+void initForLEDs(){
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	GPIO_InitTypeDef temp;
+	temp.Pin = GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8| GPIO_PIN_9;
+	temp.Mode = GPIO_MODE_OUTPUT_PP;
+	HAL_GPIO_Init(GPIOA,&temp);
+}
+void initForBlueButton(){
+		/*
+			initialization for enabling PORTA for BLUE-BUTTON
+		*/
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	GPIO_InitTypeDef temp1;
+	temp1.Pin = GPIO_PIN_0;
+	temp1.Mode = GPIO_MODE_INPUT;
+	temp1.Speed = GPIO_SPEED_FREQ_HIGH;
+	temp1.Pull = GPIO_PULLDOWN;
+	HAL_GPIO_Init(GPIOA,&temp1);
+}
+
+uint32_t LEDs[9]={GPIO_PIN_0,GPIO_PIN_1,GPIO_PIN_2,GPIO_PIN_3,GPIO_PIN_4,GPIO_PIN_5,GPIO_PIN_6,GPIO_PIN_7};
+
+void showDigit(n){
+	switch(n){
+		case 0 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5,0);
+		    break;
+		case 1 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			break;
+		case 2 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,0);
+			break;
+		case 3 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,0);
+			break;
+		case 4 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,0);
+			break;
+		case 5 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,0);
+			break;
+		case 6 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,0);
+			break;
+		case 7 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			break;
+		case 8 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,0);
+			break;
+		case 9 :
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5,0);
+			HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,0);
+			break;
+		}
+}
+
+int main(void)
+{
+  HAL_SYSTICK_Config(SystemCoreClock/(1000U/1));
+//  initForLEDs();
+  initForSevenSeg();
+  initForEnableSevenSeg();
+  initForBlueButton();
+
+  int n = 0;
+  HAL_GPIO_WritePin(GPIOD , GPIO_PIN_0,1);
+  HAL_GPIO_WritePin(GPIOD , GPIO_PIN_1,1);
+  HAL_GPIO_WritePin(GPIOD , GPIO_PIN_2,1);
+  HAL_GPIO_WritePin(GPIOD , GPIO_PIN_3,1);
+	resetLEDs();
+
+  while (1)
+  {
+	    if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0)){
+    	        n++;
+//    	        turnOnLEDs(n);
+//    	        show7Seg(n);
+//    	        showDigit(7);
+    	        while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0));
+	    }
+//	    showDigit(1);
+	    show7Seg(n);
+//	    HAL_Delay(1000);
+//	    show7Seg(3);
+	    if(n>=99 || n==0){
+	    	n=0;
+	    	resetLEDs();
+	    	show7Seg(n);
+	    }
+
+
+
+  }
+}
+
+
+void turnOnLEDs(int n){
+	for(int i = 0 ; i< n ; i++){
+		HAL_GPIO_WritePin(GPIOA ,LEDs[i] ,1);
+	}
+}
+
+void resetLEDs(){
+	for(int i = 0 ; i< 9 ; i++){
+		HAL_GPIO_WritePin(GPIOC ,LEDs[i],1);
+	}
+}
+
+void show7Seg(int n) {
+	resetLEDs();
+
+	int digit0 =  n%10;
+	int digit1 = (n/10)%10;
+	int digit2 = (n/100)%10;
+	int digit3 = (n/1000)%10;
+
+	HAL_GPIO_WritePin(GPIOD , GPIO_PIN_0,1);
+	HAL_GPIO_WritePin(GPIOD , GPIO_PIN_1,1);
+	HAL_GPIO_WritePin(GPIOD , GPIO_PIN_2,1);
+	HAL_GPIO_WritePin(GPIOD , GPIO_PIN_3,1);
+
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, 0);
+	showDigit(digit0);
+	HAL_Delay(5);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, 1);
+
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_1, 0);
+	showDigit(digit1);
+	HAL_Delay(5);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_1, 1);
+
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, 0);
+	showDigit(digit2);
+	HAL_Delay(5);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, 1);
+
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, 0);
+	showDigit(digit3);
+	HAL_Delay(5);
+	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, 1);
+
+}
+
+
+void turnOffAll7SegLEDs(){
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0,1);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_1,1);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2,1);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,1);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_4,1);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_5,1);
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_6,1);
+}
+
+
+
+"</p>
                             <p>Thank you sincerely for being with me</p>
 
 .
