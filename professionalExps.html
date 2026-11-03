@@ -408,7 +408,7 @@
 							<img src="shared-reduce.png" alt="">
 							 <p>CudaStream_t</p>
 							<img src="CudaStream_t.png" alt="">
-							<p>thrust::inclusive_scan_by_key</p>
+							<p>Considering thrust, the undesirablity was the fact that I had to choose one of two approaches below when using thrust: <br> 1- using keys for a partitioned input volume(like inclusive_scan_by_key). <br> 2- using streams. <br> while its easier to use, it takes time to create keys or create streams regarding using some of this library, so I used custom defined kernels.</p>
 							
                             <p>Thank you sincerely for being with me</p>
 
