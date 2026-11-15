@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>7 Wonders Duel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Functional styling only (no design work): card colours + layout. -->
+<style>
+  body { font-family: system-ui, Arial, sans-serif; margin: 12px; background: #f3f1ec; color: #222; }
+  h1 { margin: 0 0 8px; font-size: 22px; }
+  h3 { margin: 0 0 6px; font-size: 15px; }
+  button { cursor: pointer; padding: 4px 8px; margin: 2px 0; }
+  button:disabled { cursor: not-allowed; opacity: .5; }
+  .panel { background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 8px 10px; margin: 8px 0; }
+  .bar { margin: 6px 0; }
+  .err { background: #fde2e2; border: 1px solid #d66; padding: 6px 10px; border-radius: 6px; }
+  .small { font-size: 12px; color: #555; }
+  .decision { border: 2px solid #c60; background: #fff7ea; }
+  .result { border: 2px solid #2a7; background: #eefaf3; }
+  .result table { border-collapse: collapse; }
+  .result td, .result th { border: 1px solid #aaa; padding: 2px 10px; text-align: right; }
+  .result td:first-child { text-align: left; }
+  .track { display: flex; }
+  .mcell { flex: 1; min-width: 0; border: 1px solid #aaa; font-size: 10px; text-align: center; padding: 2px 0; background: #fafafa; }
+  .mcell.pawn { background: #ffe9a8; font-weight: bold; }
+  .tok { display: inline-block; border: 1px solid #aaa; border-radius: 4px; padding: 2px 6px; margin: 2px; background: #eef; font-size: 12px; }
+  .grid { display: grid; grid-auto-rows: 84px; gap: 4px 0; width: max-content; max-width: 100%; overflow-x: auto; }
+  .t-brown { background: #d8b894; } .t-grey { background: #d3d3d3; } .t-blue { background: #a9cdf5; }
+  .t-green { background: #b2e2a8; } .t-yellow { background: #f6e47e; } .t-red { background: #f2a5a5; }
+  .t-purple { background: #cfb0ea; }
+  .card { position: relative; margin: 0 2px; border: 1px solid #777; border-radius: 4px; padding: 3px; font-size: 11px; overflow: hidden; line-height: 1.2; }
+  .card.down { background: repeating-linear-gradient(45deg, #888, #888 6px, #999 6px, #999 12px); color: #fff; text-align: center; padding-top: 22px; }
+  .card.covered { opacity: .55; }
+  .card.avail { outline: 3px solid #1a6; cursor: pointer; }
+  .card.sel { outline: 3px solid #e60; }
+  .cols { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pl { flex: 1; min-width: 320px; background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 8px 10px; }
+  .pl.turn { border: 2px solid #1a6; }
+  .sub { font-weight: bold; margin-top: 6px; }
+  .chip { display: inline-block; border: 1px solid #888; border-radius: 3px; padding: 0 5px; margin: 1px; font-size: 12px; background: #eee; }
+  .chip.t-brown { background: #d8b894; } .chip.t-grey { background: #d3d3d3; } .chip.t-blue { background: #a9cdf5; }
+  .chip.t-green { background: #b2e2a8; } .chip.t-yellow { background: #f6e47e; } .chip.t-red { background: #f2a5a5; }
+  .chip.t-purple { background: #cfb0ea; }
+  .chip { padding: 1px 6px; } .cfx { font-size: 11px; color: #333; }
+  .symbadge { position: absolute; top: 2px; right: 3px; font-size: 17px; line-height: 1; background: #ffffffb0; border-radius: 4px; padding: 1px 2px; }
+  .symbadge .icon { height: 20px; }
+  .symtab { border-collapse: collapse; font-size: 13px; } .symtab td, .symtab th { border: 1px solid #ccc; padding: 2px 8px; text-align: left; }
+  .symtab td.pair { background: #ffe9a8; font-weight: bold; } .symtab td.one { background: #eef6ff; }
+  .wcard { margin: 3px 0; font-size: 13px; }
+  .wcost { color: #8a4b00; background: #fff0d9; border: 1px solid #f0c98c; border-radius: 3px; padding: 0 5px; }
+  .weffect { color: #0a5c4a; background: #dff5ee; border: 1px solid #93d6c1; border-radius: 3px; padding: 0 5px; }
+  .wstate { font-size: 11px; font-weight: bold; border-radius: 3px; padding: 0 5px; background: #ddd; color: #444; }
+  .st-built .wstate { background: #2a9d5c; color: #fff; } .st-unbuilt .wstate { background: #e0a030; color: #fff; }
+  .st-removed .wstate { background: #999; color: #fff; }
+  .wcard.st-built { background: #e3f3e3; border-radius: 4px; } .wcard.st-removed { opacity: .45; }
+  /* card pictures: hidden automatically when the file is missing */
+  .cimg { display: block; max-width: 100%; max-height: 40px; object-fit: contain; }
+  .cimg.big { max-height: 160px; }
+  .wcard .cimg, .tok .cimg { display: inline-block; vertical-align: middle; max-height: 28px; }
+  .wcard .cimg.big { max-height: 120px; display: block; }
+  .icon { height: 1.15em; width: auto; vertical-align: -0.2em; }
+  .log { max-height: 220px; overflow-y: auto; font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- Game logic (order matters). Keep all files in the same folder. -->
+<script src="swd-constants.js"></script>
+<script src="swd-cards.js"></script>
+<script src="swd-wonders.js"></script>
+<script src="swd-board.js"></script>
+<script src="swd-player.js"></script>
+<script src="swd-game.js"></script>
+<script src="swd-ui.js"></script>
+<script>
+  new SWD.UI(document.getElementById('app'));
+</script>
+</body>
+</html>
